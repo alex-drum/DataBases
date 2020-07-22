@@ -1,0 +1,33 @@
+CREATE TABLE `city` (
+  `id_city` int unsigned NOT NULL AUTO_INCREMENT,
+  `city_name` varchar(255) NOT NULL,
+  `id_country` int unsigned NOT NULL,
+  `id_region` int unsigned NOT NULL,
+  `id_district` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`id_city`),
+  KEY `id_country_idx` (`id_country`),
+  KEY `id_region_idx` (`id_region`),
+  KEY `id_district_idx` (`id_district`),
+  CONSTRAINT `id_country` FOREIGN KEY (`id_country`) REFERENCES `country` (`id_country`),
+  CONSTRAINT `id_district` FOREIGN KEY (`id_district`) REFERENCES `district` (`id_district`),
+  CONSTRAINT `id_region` FOREIGN KEY (`id_region`) REFERENCES `region` (`id_region`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `country` (
+  `id_country` int unsigned NOT NULL AUTO_INCREMENT,
+  `country_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_country`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `district` (
+  `id_district` int unsigned NOT NULL AUTO_INCREMENT,
+  `district_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_district`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `region` (
+  `id_region` int unsigned NOT NULL AUTO_INCREMENT,
+  `region_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_region`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
